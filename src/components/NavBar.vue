@@ -36,7 +36,7 @@ const scrollToSection = (sectionId: string) => {
 <style scoped>
 .container {
     background: rgb(71, 71, 71);
-    width: 15rem;
+    width: 13rem;
     height: 100vh;
     position: fixed;
     top: 0;
@@ -51,7 +51,7 @@ const scrollToSection = (sectionId: string) => {
 
 .img {
     height: 5rem;
-    margin: 2rem 0 2rem 3.4rem;
+    margin: 2rem 0 2rem 2.4rem;
     align-items: center;
     justify-content: center;
 }
@@ -63,7 +63,6 @@ ul {
     width: 100%;
     text-align: center;
     flex-grow: 1;
-    /* Push the icon container to the bottom */
 }
 
 li {
@@ -74,7 +73,6 @@ a {
     color: white;
     text-decoration: none;
     font-size: 1.5rem;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     display: block;
     transition: opacity 0.2s;
 }
