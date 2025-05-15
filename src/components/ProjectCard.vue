@@ -23,7 +23,7 @@ defineEmits<{
         <div class="background-wrapper" :style="{ backgroundImage: `url(${backgroundImage})` }">
             <div class="shadow-container">
                 <div class="content">
-                    <div class="cards-container">
+                    <div class="info-card-container">
                         <ProjectInfoCard v-for="(card, index) in infoCards" :key="index" class="card" :text="card.text"
                             :card-type="card.cardType" />
                     </div>
@@ -59,7 +59,6 @@ defineEmits<{
 }
 
 .background-wrapper::after {
-    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -94,7 +93,7 @@ defineEmits<{
     z-index: 4;
 }
 
-.cards-container {
+.info-card-container {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -105,28 +104,28 @@ defineEmits<{
     right: 0.5rem;
 }
 
-.cards-container .card {
-    transform: translate(100%, -360%);
+.info-card-container .card {
+    transform: translate(100%, -250%);
     opacity: 0;
     z-index: 1;
     transition: transform 0.25s ease, opacity 0.25s ease, z-index 0s ease 0.25s;
 }
 
-.shadow-container:hover .cards-container .card {
+.shadow-container:hover .info-card-container .card {
     transform: translate(-20%, -250%);
     opacity: 1;
     z-index: 5;
 }
 
-.cards-container .card:nth-child(1) {
+.info-card-container .card:nth-child(1) {
     transition-delay: 0s;
 }
 
-.cards-container .card:nth-child(2) {
+.info-card-container .card:nth-child(2) {
     transition-delay: 0.05s;
 }
 
-.cards-container .card:nth-child(3) {
+.info-card-container .card:nth-child(3) {
     transition-delay: 0.1s;
 }
 

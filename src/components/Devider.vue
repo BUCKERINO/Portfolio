@@ -7,6 +7,7 @@
     border: 0;
     border-top: 2px solid #cfcfcfe4;
     margin: 5rem 0 5rem 0;
-    width: 120%;
+    width: 100%;
+    overflow-y: hidden;
 }
 </style>

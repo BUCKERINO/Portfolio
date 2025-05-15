@@ -6,14 +6,14 @@ import ProjectsView from './views/ProjectsView.vue';
 
 <template>
   <NavBar />
-  <div class="page">
-    <HomeView />
-    <ProjectsView />
+  <div class="pl-[13rem] box-border">
+    <div class="w-full min-h-screen">
+      <HomeView />
+      <ProjectsView />
+    </div>
   </div>
 </template>
 
 <style scoped>
-.page {
-  padding-left: 10rem;
-}
+/* Tailwind CSS is applied directly in the template, no custom CSS needed */
 </style>
