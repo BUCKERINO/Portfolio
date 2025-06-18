@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import type { InfoCard } from '@/assets/Types/ProjectTypes';
 
 const props = defineProps<{
-    text: string;
-    cardType: string;
+    infocard: InfoCard | null;
 }>();
 
 const teamColor = 'rgba(139, 211, 165, 0.907)';
@@ -12,11 +12,11 @@ const platformColor = 'rgba(240, 211, 97, 0.907)';
 
 let rgba: string;
 
-if (props.cardType === 'team') {
+if (props.infocard?.cardType === 'team') {
     rgba = teamColor;
-} else if (props.cardType === 'engine') {
+} else if (props.infocard?.cardType === 'engine') {
     rgba = engineColor;
-} else if (props.cardType === 'platform') {
+} else if (props.infocard?.cardType === 'platform') {
     rgba = platformColor;
 }
 
@@ -44,7 +44,7 @@ const textColor = computed(() => {
 
 <template>
     <span :style="{ backgroundColor: rgba, color: textColor }">
-        {{ text.toUpperCase() }}
+        {{ infocard?.text.toUpperCase() }}
     </span>
 </template>
 

@@ -1,55 +1,70 @@
+```vue
 <script setup lang="ts">
 import { ref, defineAsyncComponent, onMounted, onUnmounted } from 'vue';
+import { CardType, type Project } from '@/assets/Types/ProjectTypes';
 import ProjectCard from '@/components/ProjectCard.vue';
 import DoodlePoster from '@/assets/DoodleDream/doodle_dream_poster.png';
 import PlaceHolder from '@/assets/img/OopsiDoopsy.png';
+import Devider from '@/components/Devider.vue';
+import SmallProjectCard from '@/components/SmallProjectCard.vue';
 
 // Async import modal components
 const DoodleDreamModal = defineAsyncComponent(() => import('@/components/modals/DoodleModal.vue'));
 const SpaceAdventureModal = defineAsyncComponent(() => import('@/components/modals/SpaceAdventureModal.vue'));
 
-interface InfoCard {
-    text: string;
-    cardType: string;
-}
-
-interface Project {
-    infoCards: InfoCard[];
-    title: string;
-    description: string;
-    backgroundImage: string;
-    modalComponent: any;
-}
-
-const projects: Project[] = [
+const largeProjects: Project[] = [
     {
-        infoCards: [{ text: 'team', cardType: 'team' }],
+        infoCards: [{ text: 'team', cardType: CardType.Team }],
         title: 'Doodle Dream: School Invasion',
         description: 'Unity C#, Juni 2024',
         backgroundImage: DoodlePoster,
         modalComponent: DoodleDreamModal
     },
     {
-        infoCards: [{ text: 'team', cardType: 'team' }],
+        infoCards: [{ text: 'team', cardType: CardType.Team }],
         title: 'Space Adventure',
         description: 'Godot, August 2024',
         backgroundImage: PlaceHolder,
         modalComponent: SpaceAdventureModal
     },
     {
-        infoCards: [{ text: 'team', cardType: 'team' }],
+        infoCards: [{ text: 'team', cardType: CardType.Team }],
         title: 'Space Adventure',
         description: 'Godot, August 2024',
         backgroundImage: PlaceHolder,
         modalComponent: SpaceAdventureModal
     },
     {
-        infoCards: [{ text: 'team', cardType: 'team' }],
+        infoCards: [{ text: 'team', cardType: CardType.Team }],
         title: 'Space Adventure',
         description: 'Godot, August 2024',
         backgroundImage: PlaceHolder,
         modalComponent: SpaceAdventureModal
-    }
+    },
+];
+
+const smallProjects: Project[] = [
+    {
+        infoCards: [{ text: 'team', cardType: CardType.Team }],
+        title: 'Space Adventure',
+        description: 'Godot, August 2024',
+        backgroundImage: PlaceHolder,
+        modalComponent: SpaceAdventureModal
+    }, 
+    {
+        infoCards: [{ text: 'team', cardType: CardType.Team }],
+        title: 'Space Adventure',
+        description: 'Godot, August 2024',
+        backgroundImage: PlaceHolder,
+        modalComponent: SpaceAdventureModal
+    }, 
+    {
+        infoCards: [{ text: 'team', cardType: CardType.Team }],
+        title: 'Space Adventure',
+        description: 'Godot, August 2024',
+        backgroundImage: PlaceHolder,
+        modalComponent: SpaceAdventureModal
+    },
 ];
 
 const selectedProject = ref<Project | null>(null);
@@ -81,9 +96,15 @@ onUnmounted(() => {
         <h2 class="font-bold text-4xl tracking-tight pb-8">PROJECTS</h2>
         <div
             class="flex flex-wrap gap-12 justify-between w-[70rem] box-border ml-12 max-md:flex-col max-md:gap-8 max-md:items-center max-md:ml-0 max-md:w-full">
-            <ProjectCard v-for="(project, index) in projects" :key="index" :info-cards="project.infoCards"
+            <ProjectCard v-for="(project, index) in largeProjects" :key="index" :info-cards="project.infoCards"
                 :title="project.title" :description="project.description" :background-image="project.backgroundImage"
-                @click="openModal(project)" class="flex-[0_0_47%] max-md:flex-[0_0_80%]" />
+                @click="openModal(project)" class="flex-[0_0_47%] max-md:flex-[0_0_80%] project-card" />
+        </div>
+        <div
+            class="flex flex-wrap gap-12 justify-between w-[70rem] box-border ml-12 max-md:flex-col py-10 max-md:gap-8 max-md:items-center max-md:ml-0 max-md:w-full mt-12">
+            <SmallProjectCard v-for="(project, index) in smallProjects" :key="index" :info-cards="project.infoCards"
+                :title="project.title" :description="project.description" :background-image="project.backgroundImage"
+                @click="openModal(project)" class="flex-[0_0_30%] max-md:flex-[0_0_80%] project-card" />
         </div>
     </div>
     <Transition name="modal">
@@ -92,9 +113,20 @@ onUnmounted(() => {
             <component :is="selectedProject.modalComponent" :project="selectedProject" @close="closeModal" />
         </div>
     </Transition>
+    <Devider />
 </template>
 
 <style scoped>
+/* Project card transition styles */
+.project-card {
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: scale(1.05);
+    /* Increase size by 5% on hover */
+}
+
 /* Modal transition styles */
 .modal-enter-active,
 .modal-leave-active {
@@ -111,3 +143,4 @@ onUnmounted(() => {
     opacity: 1;
 }
 </style>
+```

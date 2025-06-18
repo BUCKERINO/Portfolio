@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Devider from './Devider.vue';
+import Devider from '@/components/Devider.vue';
 </script>
 
 <template>

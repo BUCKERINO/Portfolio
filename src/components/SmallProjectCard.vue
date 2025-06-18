@@ -1,3 +1,4 @@
+```vue
 <script setup lang="ts">
 import ProjectInfoCard from './ProjectInfoCard.vue';
 import type { InfoCard } from '@/assets/Types/ProjectTypes';
@@ -17,13 +18,7 @@ defineEmits<{
 <template>
     <div class="container" @click="$emit('click')">
         <div class="background-wrapper" :style="{ backgroundImage: `url(${backgroundImage})` }">
-            <div class="shadow-container">
-                <div class="content">
-                    <div class="info-card-container">
-                        <ProjectInfoCard v-for="(infocard, index) in infoCards" :key="index" class="card" :infocard="infocard"/>
-                    </div>
-                </div>
-            </div>
+            <div class="shadow-container"></div>
         </div>
         <div class="footer">
             <h3>{{ title }}</h3>
@@ -35,8 +30,7 @@ defineEmits<{
 <style scoped>
 .container {
     box-shadow: 0px 0px 15px 2px rgba(204, 204, 204, 0.823);
-    width: 55%;
-    height: 40vh;
+    height: 28vh;
     border-radius: 1.5rem;
     cursor: pointer;
 }
@@ -46,7 +40,7 @@ defineEmits<{
     background-position: center;
     background-repeat: no-repeat;
     box-sizing: border-box;
-    height: 32vh;
+    height: 20vh;
     border-radius: 1rem;
     position: relative;
     z-index: 1;
@@ -158,3 +152,4 @@ p {
     font-size: medium;
 }
 </style>
+```
