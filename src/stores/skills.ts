@@ -1,91 +1,105 @@
 interface Skill {
-    name: string;
-    primary: boolean;
+  name: string;
+  primary: boolean;
 }
 
 interface Categorie {
-    title: string
-    icon: string
-    skills: Skill[]
+  title: string;
+  items: { catTitle: string | null; icon: string | null; skills: Skill[] }[];
 }
 
-export const softwareCategories: Categorie[] = [
+export const softwareCategories: Categorie = {
+  title: 'software',
+  items: [
     {
-    title: 'GAME ENGINES',
-    icon: 'fa-gamepad',
-    skills: [
-            { name: 'Unity', primary: true },
-            { name: 'Scratch', primary: false },
-        ],
+      catTitle: 'game engines',
+      icon: 'fa-gamepad',
+      skills: [
+        { name: 'Unity', primary: true },
+        { name: 'Scratch', primary: false },
+      ],
     },
     {
-    title: 'SOURCE CONTROL',
-    icon: 'bi-git',
-        skills: [{ name: 'Git', primary: true }],
+      catTitle: 'source control',
+      icon: 'bi-git',
+      skills: [{ name: 'Git', primary: true }],
     },
     {
-    title: 'FRAMEWORK/LIBRARIES',
-    icon: 'gi-cardboard-box-closed',
-    skills: [
-            { name: 'Vue js', primary: false },
-            { name: 'Asp.net Core', primary: false },
-            { name: 'Identity', primary: false },
-        ],
+      catTitle: 'framework/libraries',
+      icon: 'gi-cardboard-box-closed',
+      skills: [
+        { name: 'Vue js', primary: false },
+        { name: 'Asp.net Core', primary: false },
+        { name: 'Identity', primary: false },
+      ],
     },
     {
-    title: 'TOOLS',
-    icon: 'bi-tools',
-    skills: [
-            { name: 'Audacity', primary: true },
-            { name: 'After Effects', primary: true },
-            { name: 'Photoshop', primary: false },
-            { name: 'Premier Pro', primary: false },
-            { name: 'Blender', primary: false },
-        ],
+      catTitle: 'tools',
+      icon: 'bi-tools',
+      skills: [
+        { name: 'Audacity', primary: true },
+        { name: 'After Effects', primary: true },
+        { name: 'Photoshop', primary: false },
+        { name: 'Premier Pro', primary: false },
+        { name: 'Blender', primary: false },
+      ],
     },
     {
-    title: 'IDE',
-    icon: 'fa-laptop-code',
-    skills: [
-            { name: 'Visual Studio', primary: true },
-            { name: 'Visual Studio code', primary: true },
-        ],
+      catTitle: 'ide',
+      icon: 'fa-laptop-code',
+      skills: [
+        { name: 'Visual Studio', primary: true },
+        { name: 'Visual Studio code', primary: true },
+      ],
     },
-]
+  ],
+};
 
-export const programLanguages: Categorie[] = [
+export const programLanguages: Categorie = {
+  title: 'programming languages',
+  items: [
     {
-        title: 'PROGRAMMING LANGUAGES',
-        icon:'',
-        skills:[
-            {name: 'C#' , primary:true},
-            {name: 'Typescript', primary: true},
-            {name: 'HTML', primary: false},
-            {name: 'CSS', primary: false},
-            {name: 'SQL', primary: false},
-            {name: 'PHP', primary: false},
-        ]
-    }
-]
+      catTitle: null,
+      icon: null,
+      skills: [
+        { name: 'C#', primary: true },
+        { name: 'Typescript', primary: true },
+        { name: 'HTML', primary: false },
+        { name: 'CSS', primary: false },
+        { name: 'SQL', primary: false },
+        { name: 'PHP', primary: false },
+      ],
+    },
+  ],
+};
 
-export const humanLanguages: Categorie[] = [
-   {
-        title: 'HUMAN LANGUAGES',
-        icon:'',
-        skills:[
-            {name: 'Dutch' , primary:true},
-            {name: 'English', primary: true},
-        ]
-    }
-]
+export const humanLanguages: Categorie = {
+  title: 'human languages',
+  items: [
+    {
+      catTitle: null,
+      icon: null,
+      skills: [
+        { name: 'Dutch', primary: true },
+        { name: 'English', primary: true },
+      ],
+    },
+  ],
+};
 
-export const other: Categorie[] = [
-  {
-        title: 'OTHER',
-        icon:'',
-        skills:[
-            {name: 'Dutch' , primary:true},
-            {name: 'English', primary: true},
-        ]
-    }
-]
+export const otherCategories: Categorie = {
+  title: 'other',
+  items: [
+    {
+      catTitle: "HOBBY'S",
+      icon: 'fa-paint-brush',
+      skills: [
+        { name: 'Volleybal', primary: true },
+        { name: 'DND 5e', primary: false },
+        { name: 'Table top games', primary: false },
+        { name: 'Gaming', primary: false },
+        { name: 'Outdoor activities', primary: false },
+      ],
+    },
+  ],
+};

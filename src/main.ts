@@ -6,7 +6,7 @@ import { createPinia } from 'pinia'
 import { OhVueIcon, addIcons } from 'oh-vue-icons'
 import {
   BiGithub,
-  BiLinkedin,
+  CoLinkedinIn,
   HiSolidMail,
   IoClose,
   PxScript,
@@ -14,7 +14,10 @@ import {
   BiGit,
   GiCardboardBoxClosed,
   BiTools,
-  FaLaptopCode
+  FaLaptopCode,
+  FaPaintBrush,
+  BiYoutube,
+  CoDiscord
 } from 'oh-vue-icons/icons'
 
 import App from './App.vue'
@@ -22,7 +25,7 @@ import router from './router'
 
 addIcons(
   BiGithub,
-  BiLinkedin,
+  CoLinkedinIn,
   HiSolidMail,
   IoClose,
   PxScript,
@@ -30,7 +33,10 @@ addIcons(
   BiGit,
   GiCardboardBoxClosed,
   BiTools,
-  FaLaptopCode
+  FaLaptopCode,
+  FaPaintBrush,
+  BiYoutube,
+  CoDiscord
 )
 
 const app = createApp(App)

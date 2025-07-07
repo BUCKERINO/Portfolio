@@ -27,7 +27,7 @@ const scrollToSection = (sectionId: string) => {
         </ul>
         <div class="icon-container">
             <v-icon href="https://github.com" target="_blank" name="bi-github" class="social-icon" />
-            <v-icon href="https://linkedin.com" target="_blank" name="bi-linkedin" class="social-icon" />
+            <v-icon href="https://linkedin.com" target="_blank" name="co-linkedin-in" class="social-icon" />
             <v-icon href="https://linkedin.com" target="_blank" name="hi-solid-mail" class="social-icon" />
         </div>
     </nav>

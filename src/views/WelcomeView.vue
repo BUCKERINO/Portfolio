@@ -11,7 +11,6 @@ import Devider from '@/components/Devider.vue';
         In here you can find the projects
         that Tycho has worked on over his time as a Game developer.
     </p>
-    <Devider />
 </template>
 
 <style scoped>

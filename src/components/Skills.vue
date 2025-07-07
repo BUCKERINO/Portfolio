@@ -1,17 +1,12 @@
 <script setup lang="ts">
 import SkillsCard from './SkillsCard.vue';
-import { softwareCategories, programLanguages, humanLanguages, other } from '@/stores/skills';
-
-interface Skill {
-    title: string | null;
-
-}
+import { softwareCategories, programLanguages, humanLanguages, otherCategories } from '@/stores/skills';
 </script>
 
 <template>
-    <div class="pt-15 title">
+    <div class="pt-15 title text-white">
         <div class="pb-5">
-            <h1 class="text-5xl pb-5">SKILLS</h1>
+            <h1 class="text-6xl text-white pb-5">SKILLS</h1>
             <span class="flex items-center leading-tight text-2xl">•
                 <p class="text-base pl-2">Primary - Proficient</p>
             </span>
@@ -20,14 +15,17 @@ interface Skill {
             </span>
         </div>
         <div class="flex flex-wrap gap-1 justify-between md:flex-row">
-            <SkillsCard class=" px-15 pr-40">
+            <!-- Software Categories -->
+            <SkillsCard class="px-17 pr-35">
                 <div class="py-10">
-                    <h2 class="text-3xl">SOFTWARE</h2>
-                    <div v-for="(category) in softwareCategories" :key="category.title">
+                    <h2 class="text-3xl uppercase">{{ softwareCategories.title }}</h2>
+                    <div v-for="(category, index) in softwareCategories.items" :key="index">
                         <div class="pt-5">
                             <ul class="text-2xl pb-3">
-                                <v-icon :name="category.icon" scale="2" />
-                                {{ category.title }}
+                                <div class="flex flex-wrap">
+                                    <v-icon v-if="category.icon" :name="category.icon" scale="2" class="icon"/>
+                                    <h3 class="uppercase">{{ category.catTitle }}</h3>
+                                </div>
                                 <li v-for="(skill, skillIndex) in category.skills" :key="skillIndex" class="pt-1 pl-5">
                                     <span class="flex items-center leading-tight"
                                         :class="{ 'text-2xl': skill.primary, 'text-xs pl-[0.2rem]': !skill.primary }">
@@ -41,13 +39,16 @@ interface Skill {
                 </div>
             </SkillsCard>
             <div>
-                <SkillsCard class="px-15 pr-25">
-                    <div class="py-10">
-                        <h2 class="text-3xl">PROGRAMMING LANGUAGES</h2>
-                        <div v-for="(category) in programLanguages" :key="category.title">
+                <!-- Programming Languages -->
+                <SkillsCard class="px-15 pr-30 py-10">
+                        <h2 class="text-3xl uppercase">{{ programLanguages.title}}</h2>
+                        <div v-for="(category, index) in programLanguages.items" :key="index">
                             <div class="pt-5">
-                                <ul class="text-2xl">
-                                    <v-icon :name="category.icon" scale="2" />
+                                <ul class="text-2xl pb-3">
+                                    <div class="flex flex-wrap">
+                                        <v-icon v-if="category.icon" :name="category.icon" scale="2" class="icon"/>
+                                        <h3 class="uppercase">{{ category.catTitle }}</h3>
+                                    </div>
                                     <li v-for="(skill, skillIndex) in category.skills" :key="skillIndex"
                                         class="pt-1 pl-5">
                                         <span class="flex items-center leading-tight"
@@ -59,16 +60,18 @@ interface Skill {
                                 </ul>
                             </div>
                         </div>
-                    </div>
                 </SkillsCard>
-                <div class="pb-10"></div>
-                <SkillsCard class="px-15 pr-25 mt-10">
-                    <div class="py-10">
-                        <div v-for="(category) in humanLanguages" :key="category.title">
-                            <h2 class="text-3xl"> {{ category.title }} </h2>
+                <div class="pb-5"></div>
+                <!-- Human Languages -->
+                <SkillsCard class="px-15 pr-25 mt-10 py-5">
+                        <h2 class="text-3xl uppercase">{{ humanLanguages.title }}</h2>
+                        <div v-for="(category, index) in humanLanguages.items" :key="index">
                             <div class="pt-5">
-                                <ul class="text-2xl">
-                                    <v-icon :name="category.icon" scale="2" />
+                                <ul class="text-2xl pb-3">
+                                    <div class="flex flex-wrap">
+                                        <v-icon v-if="category.icon" :name="category.icon" scale="2" class="icon"/>
+                                        <h3 class="uppercase">{{ category.catTitle }}</h3>
+                                    </div>
                                     <li v-for="(skill, skillIndex) in category.skills" :key="skillIndex"
                                         class="pt-1 pl-5">
                                         <span class="flex items-center leading-tight"
@@ -80,16 +83,18 @@ interface Skill {
                                 </ul>
                             </div>
                         </div>
-                    </div>
                 </SkillsCard>
-                <div class="pb-10"></div>
-                <SkillsCard class="px-15 pr-25 mt-10">
-                    <div class="py-10">
-                        <h2 class="text-3xl">OTHER</h2>
-                        <div v-for="(category) in humanLanguages" :key="category.title">
+                <div class="pb-5"></div>
+                <!-- Other -->
+                <SkillsCard class="px-15 pr-25 py-10">
+                        <h2 class="text-3xl uppercase">{{ otherCategories.title }}</h2>
+                        <div v-for="(category, index) in otherCategories.items" :key="index">
                             <div class="pt-5">
-                                <ul class="text-2xl">
-                                    <v-icon :name="category.icon" scale="2" />
+                                <ul class="text-2xl pb-3">
+                                    <div class="flex flex-wrap">
+                                        <v-icon v-if="category.icon" :name="category.icon" scale="2" class="icon"/>
+                                        <h3 class="uppercase">{{ category.catTitle }}</h3>
+                                    </div>
                                     <li v-for="(skill, skillIndex) in category.skills" :key="skillIndex"
                                         class="pt-1 pl-5">
                                         <span class="flex items-center leading-tight"
@@ -101,7 +106,6 @@ interface Skill {
                                 </ul>
                             </div>
                         </div>
-                    </div>
                 </SkillsCard>
             </div>
         </div>
@@ -110,11 +114,22 @@ interface Skill {
 
 <style scoped>
 h1 {
-    font-weight: 600;
+    font-weight: 800;
 }
 
 h2 {
-    font-weight: 600;
+    font-weight: 800;
+    font-size: xx-large;
+    color: rgb(70, 70, 70);
+}
+
+h3 {
+    font-weight: 400;
+    color: rgb(63, 63, 63);
+}
+
+.icon {
+    color: rgb(63, 63, 63);
 }
 
 ul {

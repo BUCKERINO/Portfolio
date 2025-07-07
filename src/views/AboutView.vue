@@ -2,11 +2,13 @@
 import PlaceHolder from '@/assets/img/images.jpg';
 import CV from '@/assets/CV/CV_TychovandeWetering.pdf';
 import Skills from '@/components/Skills.vue';
+import Devider from '@/components/Devider.vue';
 
 </script>
 
 <template>
-    <div class="pb-20" id="about">
+    <div id="about">
+        <Devider/>
         <h1 class="text-6xl pb-8">TYCHO VAN DE WETERING</h1>
         <div class="flex flex-wrap gap-10">
             <img class="w-50 rounded-3xl" :src="PlaceHolder" />

@@ -93,6 +93,7 @@ onUnmounted(() => {
 
 <template>
     <div v-if="!selectedProject" class="w-full" id="projects">
+        <Devider />
         <h2 class="font-bold text-4xl tracking-tight pb-8">PROJECTS</h2>
         <div
             class="flex flex-wrap gap-12 justify-between w-[70rem] box-border ml-12 max-md:flex-col max-md:gap-8 max-md:items-center max-md:ml-0 max-md:w-full">
@@ -113,7 +114,6 @@ onUnmounted(() => {
             <component :is="selectedProject.modalComponent" :project="selectedProject" @close="closeModal" />
         </div>
     </Transition>
-    <Devider />
 </template>
 
 <style scoped>
