@@ -10,3 +10,10 @@
     padding: 7rem 0 0 10rem;
   }
 }
+
+@media (min-width: 1921px) {
+  #app {
+    transform: scale(1.5);
+    transform-origin: top left;
+  }
+}
