@@ -46,6 +46,7 @@ onUnmounted(() => {
                 <p>{{ props.gameDescription }}</p>
                 <h2>What I did</h2>
                 <p>{{ props.workDescription }}</p>
+                <slot/>
                 <ProjectInfoTable
                     v-if="info"
                     :info="info"
@@ -140,15 +141,16 @@ onUnmounted(() => {
 
 h2 {
     font-size: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    padding-top: 1rem;
     text-align: center;
     text-transform: uppercase;
 }
 
 p {
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: #ffffff;
-    padding: 1rem 7rem 1rem 7rem;
+    padding: 0.1rem 7rem 1rem 7rem;
     margin-bottom: 1rem;
     text-align: center;
 }

@@ -16,9 +16,9 @@ const largeProjects: Project[] = [
     {
         infoCards: [{ text: 'team', cardType: CardType.Team }],
         title: 'Doodle Dream: School Invasion',
-        info: {engine: ['Unity 5'], language: ['C#'], programmers: ['Thijs', 'Tycho'], artists: ['artist name 1', 'artist name 2'], date: 'June 2024'},
+        info: {engine: ['Unity 5'], language: ['C#'], programmers: ['Tycho van de Wetering', 'Leon Klasser'], artists: ['Liam Egon', 'Nien Hoekstra', 'Lucas van de Leenhorst'], date: 'June 2024'},
         gameDescription: "Doodle dream school invasion is a top-down shooter where you have to kill monsters in order to escape the school. At the beginning of the game, you get to choose which weapon you want to use to get out of the building. In order to progress, you have to defeat all the monsters in the room and shoot down the doors to enter the next room. Once you've the stairs, you'll be able to go down a floor. You can find the exit of the school on the main floor but be careful because there is a terrible monster guarding it.",
-        workDescription: "Description of the game",
+        workDescription: "My job during this project was to support the team, make components and most of the gameplay programming. I handled mostly the more complex components such as the gun system, the enemy player detection, a camera controller and a shop system. Unfortunetaly we had to remove the shop system because of time constraints. This was one of my favourite projects because of the creative flow that we had which made it fun to come up with new ideas. I also made a trailer for this game.",
         backgroundImage: DoodlePoster,
         modalComponent: DoodleDreamModal
     },
