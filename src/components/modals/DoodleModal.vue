@@ -34,7 +34,7 @@ defineEmits<{
         </div>
         <div class="image-container">
             <div class="gif-wrapper">
-                <img src="../../assets/DoodleDream/GunUIAndSO's.gif" alt="Doodle Dream gameplay"/>
+                <img src="../../assets/DoodleDream/GunUIAndSOs.gif" alt="Doodle Dream gameplay"/>
             </div>
 
             <div class="gif-wrapper">
