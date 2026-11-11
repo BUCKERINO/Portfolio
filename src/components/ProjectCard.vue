@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import ProjectInfoCard from './ProjectInfoCard.vue';
 import type { InfoCard } from '@/assets/Types/ProjectTypes';
+import type { Info } from '@/assets/Types/ProjectTypes.ts';
 
 defineProps<{
     infoCards: InfoCard[] | null;
     title: string;
-    description: string;
+    info: Info;
     backgroundImage: string;
 }>();
 
@@ -27,7 +28,11 @@ defineEmits<{
         </div>
         <div class="footer">
             <h3>{{ title }}</h3>
-            <p>{{ description }}</p>
+            <div class="project-details">
+                <span>{{ info.engine.join(', ') }}</span>
+                <span>{{ info.language.join(', ') }}</span>
+                <span>{{ info.date }}</span>
+            </div>
         </div>
     </div>
 </template>
@@ -134,6 +139,24 @@ defineEmits<{
     top: -10vh;
 }
 
+.project-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    gap: 0.1rem;
+
+    color: #000000;
+}
+
+.project-details span:not(:last-child)::after {
+    content: "•";
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+    color: #000000;
+}
+
 h1 {
     text-align: center;
     font-size: xxx-large;
@@ -152,9 +175,6 @@ h3 {
 
 p {
     text-align: center;
-    font-size: large;
-    margin: -0.5rem;
-    color: rgb(112, 112, 112);
-    font-size: medium;
+    margin: -0.2rem;
 }
 </style>

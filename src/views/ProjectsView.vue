@@ -16,28 +16,36 @@ const largeProjects: Project[] = [
     {
         infoCards: [{ text: 'team', cardType: CardType.Team }],
         title: 'Doodle Dream: School Invasion',
-        description: 'Unity C#, Juni 2024',
+        info: {engine: ['Unity 5'], language: ['C#'], programmers: ['Thijs', 'Tycho'], artists: ['artist name 1', 'artist name 2'], date: 'June 2024'},
+        gameDescription: "Doodle dream school invasion is a top-down shooter where you have to kill monsters in order to escape the school. At the beginning of the game, you get to choose which weapon you want to use to get out of the building. In order to progress, you have to defeat all the monsters in the room and shoot down the doors to enter the next room. Once you've the stairs, you'll be able to go down a floor. You can find the exit of the school on the main floor but be careful because there is a terrible monster guarding it.",
+        workDescription: "Description of the game",
         backgroundImage: DoodlePoster,
         modalComponent: DoodleDreamModal
     },
     {
         infoCards: [{ text: 'team', cardType: CardType.Team }],
         title: 'Space Adventure',
-        description: 'Godot, August 2024',
+        info: {engine: ['Godot'], language: ['GDScript'], programmers: ['programmer 1', 'programmer 2'], artists: ['artist name 1', 'artist name 2'], date: 'June 2024'},
+        gameDescription: "Description of the game",
+        workDescription:"Description of the work",
         backgroundImage: PlaceHolder,
         modalComponent: SpaceAdventureModal
     },
     {
         infoCards: [{ text: 'team', cardType: CardType.Team }],
         title: 'Space Adventure',
-        description: 'Godot, August 2024',
+        info: {engine: ['Godot'], language: ['GDScript'], programmers: ['programmer 1', 'programmer 2'], artists: ['artist name 1', 'artist name 2'], date: 'June 2024'},
+        gameDescription: "Description of the game",
+        workDescription:"Description of the work",
         backgroundImage: PlaceHolder,
         modalComponent: SpaceAdventureModal
     },
     {
         infoCards: [{ text: 'team', cardType: CardType.Team }],
         title: 'Space Adventure',
-        description: 'Godot, August 2024',
+        info: {engine: ['Godot'], language: ['GDScript'], programmers: ['programmer 1', 'programmer 2'], artists: ['artist name 1', 'artist name 2'], date: 'June 2024'},
+        gameDescription: "Description of the game",
+        workDescription:"Description of the work",
         backgroundImage: PlaceHolder,
         modalComponent: SpaceAdventureModal
     },
@@ -47,21 +55,27 @@ const smallProjects: Project[] = [
     {
         infoCards: [{ text: 'team', cardType: CardType.Team }],
         title: 'Space Adventure',
-        description: 'Godot, August 2024',
+        info: {engine: ['Godot'], language: ['GDScript'], programmers: ['programmer 1', 'programmer 2'], artists: ['artist name 1', 'artist name 2'], date: 'June 2024'},
+        gameDescription: "Description of the game",
+        workDescription:"Description of the work",
         backgroundImage: PlaceHolder,
         modalComponent: SpaceAdventureModal
     }, 
     {
         infoCards: [{ text: 'team', cardType: CardType.Team }],
         title: 'Space Adventure',
-        description: 'Godot, August 2024',
+        info: {engine: ['Godot'], language: ['GDScript'], programmers: ['programmer 1', 'programmer 2'], artists: ['artist name 1', 'artist name 2'], date: 'June 2024'},
+        gameDescription: "Description of the game",
+        workDescription:"Description of the work",
         backgroundImage: PlaceHolder,
         modalComponent: SpaceAdventureModal
     }, 
     {
         infoCards: [{ text: 'team', cardType: CardType.Team }],
         title: 'Space Adventure',
-        description: 'Godot, August 2024',
+        info: {engine: ['Godot'], language: ['GDScript'], programmers: ['programmer 1', 'programmer 2'], artists: ['artist name 1', 'artist name 2'], date: 'June 2024'},
+        gameDescription: "Description of the game",
+        workDescription:"Description of the work",
         backgroundImage: PlaceHolder,
         modalComponent: SpaceAdventureModal
     },
@@ -98,13 +112,13 @@ onUnmounted(() => {
         <div
             class="flex flex-wrap gap-12 justify-between w-[70rem] box-border ml-12 max-md:flex-col max-md:gap-8 max-md:items-center max-md:ml-0 max-md:w-full">
             <ProjectCard v-for="(project, index) in largeProjects" :key="index" :info-cards="project.infoCards"
-                :title="project.title" :description="project.description" :background-image="project.backgroundImage"
+                :title="project.title" :info="project.info" :background-image="project.backgroundImage"
                 @click="openModal(project)" class="flex-[0_0_47%] max-md:flex-[0_0_80%] project-card" />
         </div>
         <div
             class="flex flex-wrap gap-12 justify-between w-[70rem] box-border ml-12 max-md:flex-col py-10 max-md:gap-8 max-md:items-center max-md:ml-0 max-md:w-full mt-12">
             <SmallProjectCard v-for="(project, index) in smallProjects" :key="index" :info-cards="project.infoCards"
-                :title="project.title" :description="project.description" :background-image="project.backgroundImage"
+                :title="project.title" :description="project.workDescription" :background-image="project.backgroundImage"
                 @click="openModal(project)" class="flex-[0_0_30%] max-md:flex-[0_0_80%] project-card" />
         </div>
     </div>

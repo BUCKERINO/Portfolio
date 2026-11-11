@@ -1,3 +1,5 @@
+import type { Component } from "vue";
+
 export enum CardType{
     Team = 'team',
     Engine = 'engine',
@@ -10,9 +12,19 @@ export interface InfoCard {
 }
 
 export interface Project {
-    infoCards: InfoCard[] | null;
+    infoCards: InfoCard[];
     title: string;
-    description: string;
+    info: Info;
+    gameDescription: string;
+    workDescription: string;
     backgroundImage: string;
-    modalComponent: any;
+    modalComponent: Component;
+}
+
+export interface Info{
+    engine: string[];
+    language: string[];
+    programmers: string[];
+    artists: string[];
+    date: string;
 }
