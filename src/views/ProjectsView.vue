@@ -85,28 +85,16 @@ const selectedProject = ref<Project | null>(null);
 
 const openModal = (project: Project) => {
     selectedProject.value = project;
-    document.body.style.overflow = 'hidden';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
 const closeModal = () => {
     selectedProject.value = null;
-    document.body.style.overflow = 'auto';
 };
 
-onMounted(() => {
-    if (selectedProject.value) {
-        document.body.style.overflow = 'hidden';
-    }
-});
-
-onUnmounted(() => {
-    document.body.style.overflow = 'auto';
-});
 </script>
 
 <template>
-    <div v-if="!selectedProject" class="w-full" id="projects">
+    <div class="w-full" id="projects">
         <Devider />
         <h2 class="font-bold text-4xl tracking-tight pb-8">PROJECTS</h2>
         <div

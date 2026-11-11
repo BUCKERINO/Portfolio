@@ -51,6 +51,10 @@ onUnmounted(() => {
                     v-if="info"
                     :info="info"
                 />
+                <button type="button" class="bottom-close-button" @click="$emit('close')">
+                    <v-icon name="io-close" scale="1.2" />
+                    Close
+                </button>
             </div>
         </div>
     </div>
@@ -81,6 +85,12 @@ onUnmounted(() => {
     position: relative;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin: 2rem 0;
+}
+
+.modal-content {
+    position: relative;
+    z-index: 1;
+    padding: 1rem;
 }
 
 /* Blurred background */
@@ -126,13 +136,41 @@ onUnmounted(() => {
 .close-button:hover {
     color: #5c5c5c;
 }
+.bottom-close-button {
+    display: block;
+    margin: 5rem auto 7rem;
+    padding: 0.75rem 1rem;
 
-.modal-content {
-    position: relative;
-    z-index: 1;
-    padding: 1rem;
+    background: #d0e6ff;
+    color: #081536;
 
-    h1 {
+    border: none;
+    border-radius: 0.75rem;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.bottom-close-button:hover {
+    background: #ffffff;
+    transform: scale(1.05);
+}
+
+.bottom-close-button:active {
+    transform: scale(0.98);
+}
+
+.bottom-close-button:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 3px;
+}
+
+h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
     text-align: center;
@@ -153,6 +191,5 @@ p {
     padding: 0.1rem 7rem 1rem 7rem;
     margin-bottom: 1rem;
     text-align: center;
-}
 }
 </style>

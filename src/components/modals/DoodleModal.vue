@@ -28,16 +28,25 @@ defineEmits<{
         :game-description="project.gameDescription"
         :work-description="project.workDescription" 
         @close = "$emit('close')">
+
         <div class="image-container">
-            <img src=""
+            <img class="image" src="../../assets/DoodleDream/GameGif.gif" alt="Doodle Dream gameplay"/>
+        </div>
+        <div class="image-container">
+            <div class="gif-wrapper">
+                <img src="../../assets/DoodleDream/GunUIAndSO's.gif" alt="Doodle Dream gameplay"/>
+            </div>
+
+            <div class="gif-wrapper">
+                <img src="../../assets/DoodleDream/BreakableDoor.gif" alt="Breakable door mechanic"/>
+            </div>
         </div>
         <a
             class="link-button"
             href="https://www.youtube.com/watch?v=Sk_1crBV_P0"
             target="_blank"
-            rel="noopener noreferrer"
             aria-label="Watch Doodle Dream on YouTube"
-        >
+        >        
             <v-icon name="bi-youtube" scale="2.0" />
             <p>Watch game trailer</p>
         </a>
@@ -45,6 +54,48 @@ defineEmits<{
 </template>
 
 <style scoped>
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    width: 100%;
+    margin: 1rem auto;
+}
+
+.image {
+    border-radius: 0.75rem;
+}
+
+.gif-wrapper {
+    max-width: 390px;
+    max-height: 200px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+    border-radius: 0.75rem;
+}
+
+.gif-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@media (max-width: 650px) {
+    .image-container {
+        flex-direction: column;
+    }
+
+    .gif-wrapper {
+        width: min(100%, 300px);
+    }
+}
+
 .link-button {
     display: flex;
     justify-content: center;
