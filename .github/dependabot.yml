@@ -1,0 +1,15 @@
+# Opens PRs for vulnerable/outdated npm packages and GitHub Actions (keeps pinned SHAs current).
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      dev-dependencies:
+        dependency-type: development
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

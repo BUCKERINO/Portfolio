@@ -1,10 +1,10 @@
 import { CardType, type Project } from '@/assets/Types/ProjectTypes';
 
-import DoodlePoster from '@/assets/DoodleDream/doodle_dream_poster.png';
-import DoodleGameplay from '@/assets/DoodleDream/GameGif.gif';
-import DoodleGunUI from '@/assets/DoodleDream/GunUIAndSOs.gif';
-import DoodleBreakableDoor from '@/assets/DoodleDream/BreakableDoor.gif';
-import PlaceHolder from '@/assets/img/OopsiDoopsy.png';
+import DoodlePoster from '@/assets/DoodleDream/doodle_dream_poster.webp';
+import DoodleGameplay from '@/assets/DoodleDream/GameGif.mp4';
+import DoodleGunUI from '@/assets/DoodleDream/GunUIAndSOs.mp4';
+import DoodleBreakableDoor from '@/assets/DoodleDream/BreakableDoor.mp4';
+import PlaceHolder from '@/assets/img/OopsiDoopsy.webp';
 
 /*
  * To add a project, add an entry to this list. The generic modal shows its title,
@@ -20,7 +20,7 @@ export const projects: Project[] = [
             engine: ['Unity 5'],
             language: ['C#'],
             programmers: ['Tycho van de Wetering', 'Leon Klasser'],
-            artists: ['Liam Egon', 'Nien Hoekstra', 'Lucas van de Leenhorst'],
+            artists: ['Liam Egan', 'Nien Hoekstra', 'Lucas van de Loenhorst'],
             date: 'June 2024',
         },
         gameDescription:
@@ -29,10 +29,10 @@ export const projects: Project[] = [
             'My job during this project was to support the team, make components and most of the gameplay programming. I handled mostly the more complex components such as the gun system, the enemy player detection, a camera controller and a shop system. Unfortunetaly we had to remove the shop system because of time constraints. This was one of my favourite projects because of the creative flow that we had which made it fun to come up with new ideas. I also made a trailer for this game.',
         backgroundImage: DoodlePoster,
         media: [
-            [{ src: DoodleGameplay, alt: 'Doodle Dream gameplay' }],
+            [{ src: DoodleGameplay, alt: 'Doodle Dream gameplay', type: 'video' }],
             [
-                { src: DoodleGunUI, alt: 'Gun UI and scriptable objects' },
-                { src: DoodleBreakableDoor, alt: 'Breakable door mechanic' },
+                { src: DoodleGunUI, alt: 'Gun UI and scriptable objects', type: 'video' },
+                { src: DoodleBreakableDoor, alt: 'Breakable door mechanic', type: 'video' },
             ],
         ],
         links: [

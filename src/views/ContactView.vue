@@ -17,8 +17,8 @@ import IconButon from '@/components/IconButon.vue';
         </p>
         <div class="flex flex-wrap gap-5 pt-10">
             <IconButon>
-                <a href="https://linkedin.com" target="_blank">
-                    <v-icon target="_blank" name="co-linkedin-in" scale="2" class="social-icon" />
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <v-icon name="co-linkedin-in" scale="2" class="social-icon" />
                 </a>
             </IconButon>
         </div>

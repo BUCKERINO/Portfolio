@@ -26,9 +26,15 @@ const scrollToSection = (sectionId: string) => {
             </li>
         </ul>
         <div class="icon-container">
-            <v-icon href="https://github.com" target="_blank" name="bi-github" class="social-icon" />
-            <v-icon href="https://linkedin.com" target="_blank" name="co-linkedin-in" class="social-icon" />
-            <v-icon href="https://linkedin.com" target="_blank" name="hi-solid-mail" class="social-icon" />
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <v-icon name="bi-github" class="social-icon" />
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <v-icon name="co-linkedin-in" class="social-icon" />
+            </a>
+            <a href="mailto:tycho.vandewetering@protonmail.com" aria-label="Email">
+                <v-icon name="hi-solid-mail" class="social-icon" />
+            </a>
         </div>
     </nav>
 </template>

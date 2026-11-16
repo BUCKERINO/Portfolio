@@ -15,6 +15,17 @@ const modalBackground = computed(() => ({
     '--modal-bg': `url("${props.project.backgroundImage}")`,
 }));
 
+// Only allow http(s) links so project data can never produce a `javascript:` URL
+const safeLinks = computed(() =>
+    (props.project.links ?? []).filter((link) => {
+        try {
+            return ['https:', 'http:'].includes(new URL(link.url).protocol);
+        } catch {
+            return false;
+        }
+    }),
+);
+
 const onKeydown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') emit('close');
 };
@@ -52,7 +63,7 @@ onUnmounted(() => {
                     </div>
                 </div>
 
-                <a v-for="link in project.links" :key="link.url" class="link-button" :href="link.url"
+                <a v-for="link in safeLinks" :key="link.url" class="link-button" :href="link.url"
                     target="_blank" rel="noopener noreferrer" :style="link.color ? { background: link.color } : undefined">
                     <v-icon v-if="link.icon" :name="link.icon" scale="2.0" />
                     <span>{{ link.label }}</span>
