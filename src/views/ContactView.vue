@@ -11,7 +11,7 @@ import IconButon from '@/components/IconButon.vue';
             <v-icon name="hi-solid-mail" scale="2"/>
             <h1 class="text-3xl pb-8 uppercase">email</h1>
         </div>
-        <h2 class="text-2xl uppercase">tycho.vandewetering@protonmail.com</h2>
+        <h2 class="text-lg sm:text-2xl uppercase break-all">tycho.vandewetering@protonmail.com</h2>
         <p>
             Feel free to contact me on any platform about any topic
         </p>

@@ -15,7 +15,7 @@ import Devider from '@/components/Devider.vue';
 
 <style scoped>
 h1 {
-    font-size: xxx-large;
+    font-size: clamp(2rem, 8vw, 3rem);
     font-weight: bolder;
     letter-spacing: 0px;
 }

@@ -20,17 +20,17 @@ const modalComponent = computed(() => selectedProject.value?.modalComponent ?? B
     <div class="w-full" id="projects">
         <Devider />
         <h2 class="font-bold text-4xl tracking-tight pb-8">PROJECTS</h2>
-        <div
-            class="flex flex-wrap gap-12 justify-between w-[70rem] box-border ml-12 max-md:flex-col max-md:gap-8 max-md:items-center max-md:ml-0 max-md:w-full">
+        <!-- Centered single column on phones / portrait tablets, 2 columns on landscape tablets and desktop -->
+        <div class="project-grid large">
             <ProjectCard v-for="project in largeProjects" :key="project.id" :info-cards="project.infoCards"
                 :title="project.title" :info="project.info" :background-image="project.backgroundImage"
-                @click="selectedProject = project" class="flex-[0_0_47%] max-md:flex-[0_0_80%] project-card" />
+                @click="selectedProject = project" class="project-card" />
         </div>
-        <div
-            class="flex flex-wrap gap-12 justify-between w-[70rem] box-border ml-12 max-md:flex-col py-10 max-md:gap-8 max-md:items-center max-md:ml-0 max-md:w-full mt-12">
+        <!-- Centered single column on phones, 2 columns on tablets, 3 on large desktop screens -->
+        <div class="project-grid small py-10 mt-12">
             <SmallProjectCard v-for="project in smallProjects" :key="project.id" :title="project.title"
                 :description="project.workDescription" :background-image="project.backgroundImage"
-                @click="selectedProject = project" class="flex-[0_0_30%] max-md:flex-[0_0_80%] project-card" />
+                @click="selectedProject = project" class="project-card" />
         </div>
     </div>
     <Transition name="modal">
@@ -40,14 +40,59 @@ const modalComponent = computed(() => selectedProject.value?.modalComponent ?? B
 </template>
 
 <style scoped>
+/* Cards wrap in centered rows, so a leftover card on the last row is centered too.
+   Card width = (row width - gaps) / columns. */
+.project-grid {
+    --gap: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--gap);
+}
+
+/* Phones & tablets (top bar layout): large and small cards look identical */
+.project-grid > * {
+    width: 100%;
+    max-width: 36rem;
+}
+
+/* Landscape tablets (and phones in landscape): 2 cards per row */
+@media (min-width: 768px) and (orientation: landscape) {
+    .project-grid > * {
+        max-width: none;
+        width: calc((100% - var(--gap)) / 2);
+    }
+}
+
+/* Desktop (keep in sync with src/breakpoints.ts) */
+@media (min-width: 1367px), (min-width: 1024px) and (hover: hover) {
+    .project-grid {
+        --gap: 3rem;
+    }
+
+    .project-grid > * {
+        max-width: none;
+        width: calc((100% - var(--gap)) / 2);
+    }
+
+    /* 3 small cards per row on wide desktop screens */
+    @media (min-width: 1280px) {
+        .small > * {
+            width: calc((100% - 2 * var(--gap)) / 3);
+        }
+    }
+}
+
 /* Project card transition styles */
 .project-card {
     transition: transform 0.3s ease;
 }
 
-.project-card:hover {
-    transform: scale(1.05);
-    /* Increase size by 5% on hover */
+/* Only grow on devices with a real hover (not on touch screens) */
+@media (hover: hover) {
+    .project-card:hover {
+        transform: scale(1.05);
+    }
 }
 
 /* Modal transition styles */

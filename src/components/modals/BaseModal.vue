@@ -56,7 +56,7 @@ onUnmounted(() => {
                 <p>{{ project.workDescription }}</p>
 
                 <div v-for="(row, rowIndex) in project.media" :key="rowIndex" class="media-row">
-                    <div v-for="item in row" :key="item.src" class="media-item" :class="{ single: row.length === 1 }">
+                    <div v-for="item in row" :key="item.src" class="media-item">
                         <video v-if="item.type === 'video'" :src="item.src" :aria-label="item.alt"
                             autoplay loop muted playsinline preload="metadata" />
                         <img v-else :src="item.src" :alt="item.alt" loading="lazy" decoding="async" />
@@ -107,6 +107,22 @@ onUnmounted(() => {
     position: relative;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin: 2rem 0;
+}
+
+@media (max-width: 767.98px) {
+    .modal {
+        width: calc(100vw - 1.5rem);
+        margin: 0.75rem 0;
+    }
+
+    .close-button {
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+
+    .bottom-close-button {
+        margin: 3rem auto 2rem;
+    }
 }
 
 .modal-content {
@@ -193,59 +209,48 @@ onUnmounted(() => {
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: clamp(1.75rem, 6vw, 3rem);
+    padding: 0 3rem; /* keep clear of the close button */
+    overflow-wrap: break-word;
     margin-bottom: 1rem;
     text-align: center;
     text-transform: uppercase;
 }
 
 h2 {
-    font-size: 2rem;
+    font-size: clamp(1.4rem, 4vw, 2rem);
     margin-bottom: 0.5rem;
     padding-top: 1rem;
     text-align: center;
     text-transform: uppercase;
 }
 
+/* Media keeps the same arrangement at every screen size and scales proportionally:
+   each row is capped at 800px and shrinks with the modal, items share the row equally
+   and keep a fixed 16:9 shape (so nothing jumps while videos load). */
 .media-row {
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 1rem;
+    gap: 2%;
     width: 100%;
+    max-width: 800px;
     margin: 1rem auto;
 }
 
 .media-item {
-    max-width: 390px;
-    max-height: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    flex: 1 1 0;
+    min-width: 0;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
     border-radius: 0.75rem;
 }
 
-.media-item.single {
-    max-width: 100%;
-    max-height: none;
-}
-
 .media-item img,
 .media-item video {
+    display: block;
     width: 100%;
     height: 100%;
-    object-fit: contain;
-}
-
-@media (max-width: 650px) {
-    .media-row {
-        flex-direction: column;
-    }
-
-    .media-item {
-        width: min(100%, 300px);
-    }
+    object-fit: cover;
 }
 
 .link-button {
@@ -271,7 +276,7 @@ h2 {
 p {
     font-size: 1rem;
     color: #ffffff;
-    padding: 0.1rem 7rem 1rem 7rem;
+    padding: 0.1rem clamp(0.5rem, 6vw, 7rem) 1rem;
     margin-bottom: 1rem;
     text-align: center;
 }

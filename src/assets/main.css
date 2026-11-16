@@ -1,19 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap');
 @import './base.css';
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-  }
-
-  #app {
-    padding: 7rem 0 0 10rem;
-  }
+/* Anchor scrolling stops below the fixed mobile top bar */
+html {
+  scroll-padding-top: 5rem;
 }
 
+/* Large / 4K screens: scale everything up via the root font size (all sizes are rem based).
+   This replaces transform: scale(), which broke the fixed navbar. */
 @media (min-width: 1921px) {
-  #app {
-    transform: scale(1.5);
-    transform-origin: top left;
+  html {
+    font-size: 150%;
   }
 }

@@ -37,10 +37,15 @@ defineEmits<{
 </template>
 
 <style scoped>
+/* Fixed 16:10 shape that scales with the card's width.
+   Everything inside is sized in cqi (1cqi = 1% of the card width), so it scales as one piece. */
 .container {
     box-shadow: 0px 0px 15px 2px rgba(204, 204, 204, 0.823);
-    width: 55%;
-    height: 40vh;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    container-type: inline-size;
+    display: flex;
+    flex-direction: column;
     border-radius: 1.5rem;
     cursor: pointer;
 }
@@ -50,7 +55,8 @@ defineEmits<{
     background-position: center;
     background-repeat: no-repeat;
     box-sizing: border-box;
-    height: 32vh;
+    flex: 1 1 auto;
+    min-height: 0;
     border-radius: 1rem;
     position: relative;
     z-index: 1;
@@ -67,11 +73,10 @@ defineEmits<{
 }
 
 .shadow-container {
-    min-height: inherit;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: inherit;
+    height: 100%;
     transition: box-shadow 0.3s ease;
     border-radius: inherit;
     position: relative;
@@ -129,13 +134,14 @@ defineEmits<{
 }
 
 .footer {
-    padding-top: 6rem;
+    /* Pulled up underneath the image so the rounded image overlaps it */
+    flex: 0 0 auto;
+    margin-top: -4cqi;
+    padding: 6cqi 3cqi 3cqi;
     background: white;
-    height: 18vh;
     border-radius: 1rem;
     position: relative;
     z-index: 0;
-    top: -10vh;
 }
 
 .project-details {
@@ -145,7 +151,7 @@ defineEmits<{
     text-align: center;
     flex-wrap: wrap;
     gap: 0.1rem;
-
+    font-size: 2.8cqi;
     color: #000000;
 }
 
@@ -156,14 +162,16 @@ defineEmits<{
     color: #000000;
 }
 
-
 h3 {
     text-align: center;
     color: black;
     font-weight: bold;
-    font-size: x-large;
+    font-size: 4.2cqi;
     padding: 0;
     margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 </style>

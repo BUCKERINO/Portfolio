@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import SkillsCard from './SkillsCard.vue';
 import { softwareCategories, programLanguages, humanLanguages, otherCategories } from '@/stores/skills';
+
+// Software gets its own (tall) column on large screens; the rest stack next to it.
+const sideCategories = [programLanguages, humanLanguages, otherCategories];
 </script>
 
 <template>
     <div class="pt-15 title text-white">
         <div class="pb-5">
-            <h1 class="text-6xl text-white pb-5">SKILLS</h1>
+            <h1 class="text-4xl md:text-6xl text-white pb-5">SKILLS</h1>
             <span class="flex items-center leading-tight text-2xl">•
                 <p class="text-base pl-2">Primary - Proficient</p>
             </span>
@@ -14,98 +17,27 @@ import { softwareCategories, programLanguages, humanLanguages, otherCategories }
                 <p class="text-base pl-2">Secondary - Some Experience</p>
             </span>
         </div>
-        <div class="flex flex-wrap gap-1 justify-between md:flex-row">
-            <!-- Software Categories -->
-            <SkillsCard class="px-17 pr-35">
-                <div class="py-10">
-                    <h2 class="text-3xl uppercase">{{ softwareCategories.title }}</h2>
-                    <div v-for="(category, index) in softwareCategories.items" :key="index">
-                        <div class="pt-5">
-                            <ul class="text-2xl pb-3">
-                                <div class="flex flex-wrap">
-                                    <v-icon v-if="category.icon" :name="category.icon" scale="2" class="icon"/>
-                                    <h3 class="uppercase">{{ category.catTitle }}</h3>
-                                </div>
-                                <li v-for="(skill, skillIndex) in category.skills" :key="skillIndex" class="pt-1 pl-5">
-                                    <span class="flex items-center leading-tight"
-                                        :class="{ 'text-2xl': skill.primary, 'text-xs pl-[0.2rem]': !skill.primary }">
-                                        <span>{{ skill.primary ? '•' : '○' }}</span>
-                                        <p class="text-base pl-2">{{ skill.name }}</p>
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
+        <!-- Phones/tablets: all cards stacked. lg+: software left, the others stacked on the right. -->
+        <div class="flex flex-col gap-5 lg:flex-row lg:items-start">
+            <div v-for="(column, columnIndex) in [[softwareCategories], sideCategories]" :key="columnIndex"
+                class="flex flex-col gap-5 lg:flex-1">
+                <SkillsCard v-for="group in column" :key="group.title" class="px-6 py-8 sm:px-12 lg:py-10">
+                    <h2 class="text-3xl uppercase break-words">{{ group.title }}</h2>
+                    <div v-for="(category, index) in group.items" :key="index" class="pt-5">
+                        <ul class="text-2xl pb-3">
+                            <div v-if="category.catTitle || category.icon" class="flex flex-wrap items-center gap-2">
+                                <v-icon v-if="category.icon" :name="category.icon" scale="2" class="icon" />
+                                <h3 class="uppercase">{{ category.catTitle }}</h3>
+                            </div>
+                            <li v-for="skill in category.skills" :key="skill.name" class="pt-1 pl-5">
+                                <span class="flex items-center leading-tight"
+                                    :class="{ 'text-2xl': skill.primary, 'text-xs pl-[0.2rem]': !skill.primary }">
+                                    <span>{{ skill.primary ? '•' : '○' }}</span>
+                                    <p class="text-base pl-2">{{ skill.name }}</p>
+                                </span>
+                            </li>
+                        </ul>
                     </div>
-                </div>
-            </SkillsCard>
-            <div>
-                <!-- Programming Languages -->
-                <SkillsCard class="px-15 pr-30 py-10">
-                        <h2 class="text-3xl uppercase">{{ programLanguages.title}}</h2>
-                        <div v-for="(category, index) in programLanguages.items" :key="index">
-                            <div class="pt-5">
-                                <ul class="text-2xl pb-3">
-                                    <div class="flex flex-wrap">
-                                        <v-icon v-if="category.icon" :name="category.icon" scale="2" class="icon"/>
-                                        <h3 class="uppercase">{{ category.catTitle }}</h3>
-                                    </div>
-                                    <li v-for="(skill, skillIndex) in category.skills" :key="skillIndex"
-                                        class="pt-1 pl-5">
-                                        <span class="flex items-center leading-tight"
-                                            :class="{ 'text-2xl': skill.primary, 'text-xs pl-[0.2rem]': !skill.primary }">
-                                            <span>{{ skill.primary ? '•' : '○' }}</span>
-                                            <p class="text-base pl-2">{{ skill.name }}</p>
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                </SkillsCard>
-                <div class="pb-5"></div>
-                <!-- Human Languages -->
-                <SkillsCard class="px-15 pr-25 mt-10 py-5">
-                        <h2 class="text-3xl uppercase">{{ humanLanguages.title }}</h2>
-                        <div v-for="(category, index) in humanLanguages.items" :key="index">
-                            <div class="pt-5">
-                                <ul class="text-2xl pb-3">
-                                    <div class="flex flex-wrap">
-                                        <v-icon v-if="category.icon" :name="category.icon" scale="2" class="icon"/>
-                                        <h3 class="uppercase">{{ category.catTitle }}</h3>
-                                    </div>
-                                    <li v-for="(skill, skillIndex) in category.skills" :key="skillIndex"
-                                        class="pt-1 pl-5">
-                                        <span class="flex items-center leading-tight"
-                                            :class="{ 'text-2xl': skill.primary, 'text-xs pl-[0.2rem]': !skill.primary }">
-                                            <span>{{ skill.primary ? '•' : '○' }}</span>
-                                            <p class="text-base pl-2">{{ skill.name }}</p>
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                </SkillsCard>
-                <div class="pb-5"></div>
-                <!-- Other -->
-                <SkillsCard class="px-15 pr-25 py-10">
-                        <h2 class="text-3xl uppercase">{{ otherCategories.title }}</h2>
-                        <div v-for="(category, index) in otherCategories.items" :key="index">
-                            <div class="pt-5">
-                                <ul class="text-2xl pb-3">
-                                    <div class="flex flex-wrap">
-                                        <v-icon v-if="category.icon" :name="category.icon" scale="2" class="icon"/>
-                                        <h3 class="uppercase">{{ category.catTitle }}</h3>
-                                    </div>
-                                    <li v-for="(skill, skillIndex) in category.skills" :key="skillIndex"
-                                        class="pt-1 pl-5">
-                                        <span class="flex items-center leading-tight"
-                                            :class="{ 'text-2xl': skill.primary, 'text-xs pl-[0.2rem]': !skill.primary }">
-                                            <span>{{ skill.primary ? '•' : '○' }}</span>
-                                            <p class="text-base pl-2">{{ skill.name }}</p>
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
                 </SkillsCard>
             </div>
         </div>
