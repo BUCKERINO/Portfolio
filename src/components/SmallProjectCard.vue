@@ -1,10 +1,5 @@
-```vue
 <script setup lang="ts">
-import ProjectInfoCard from './ProjectInfoCard.vue';
-import type { InfoCard } from '@/assets/Types/ProjectTypes';
-
 defineProps<{
-    infoCards: InfoCard[] | null;
     title: string;
     description: string;
     backgroundImage: string;
@@ -73,50 +68,12 @@ defineEmits<{
     border-radius: inherit;
 }
 
-.content {
-    color: white;
-    text-align: center;
-    padding: 2rem;
-    width: 100%;
-    position: relative;
-    z-index: 4;
-}
 
-.info-card-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-start;
-    gap: 0.5rem;
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-}
 
-.info-card-container .card {
-    transform: translate(100%, -250%);
-    opacity: 0;
-    z-index: 1;
-    transition: transform 0.25s ease, opacity 0.25s ease, z-index 0s ease 0.25s;
-}
 
-.shadow-container:hover .info-card-container .card {
-    transform: translate(-20%, -250%);
-    opacity: 1;
-    z-index: 5;
-}
 
-.info-card-container .card:nth-child(1) {
-    transition-delay: 0s;
-}
 
-.info-card-container .card:nth-child(2) {
-    transition-delay: 0.05s;
-}
 
-.info-card-container .card:nth-child(3) {
-    transition-delay: 0.1s;
-}
 
 .footer {
     padding-top: 6rem;
@@ -128,12 +85,6 @@ defineEmits<{
     top: -10vh;
 }
 
-h1 {
-    text-align: center;
-    font-size: xxx-large;
-    font-weight: bolder;
-    margin: 0 0 1rem 0;
-}
 
 h3 {
     text-align: center;
@@ -146,10 +97,8 @@ h3 {
 
 p {
     text-align: center;
-    font-size: large;
     margin: -0.5rem;
     color: rgb(112, 112, 112);
     font-size: medium;
 }
 </style>
-```

@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import ProjectInfoCard from './ProjectInfoCard.vue';
-import type { InfoCard } from '@/assets/Types/ProjectTypes';
-import type { Info } from '@/assets/Types/ProjectTypes.ts';
+import type { Info, InfoCard } from '@/assets/Types/ProjectTypes';
 
 defineProps<{
-    infoCards: InfoCard[] | null;
+    infoCards: InfoCard[];
     title: string;
     info: Info;
     backgroundImage: string;
@@ -157,12 +156,6 @@ defineEmits<{
     color: #000000;
 }
 
-h1 {
-    text-align: center;
-    font-size: xxx-large;
-    font-weight: bolder;
-    margin: 0 0 1rem 0;
-}
 
 h3 {
     text-align: center;
@@ -173,8 +166,4 @@ h3 {
     margin: 0;
 }
 
-p {
-    text-align: center;
-    margin: -0.2rem;
-}
 </style>

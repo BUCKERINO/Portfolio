@@ -1,57 +1,68 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted } from 'vue';
 import ProjectInfoTable from '../ProjectInfoTable.vue';
-import type { Info } from '@/assets/Types/ProjectTypes';
+import type { Project } from '@/assets/Types/ProjectTypes';
 
 const props = defineProps<{
-    bgImage?: string;
-    title?: string;
-    info?: Info;
-    gameDescription?: string;
-    workDescription?: string;
+    project: Project;
 }>();
 
-defineEmits<{
+const emit = defineEmits<{
     (e: 'close'): void;
-    (e: 'open'): void;
 }>();
 
 const modalBackground = computed(() => ({
-        '--modal-bg': props.bgImage
-        ? `url("${props.bgImage}")`
-        : 'none'
+    '--modal-bg': `url("${props.project.backgroundImage}")`,
 }));
 
-// Prevent background scrolling when modal is open
+const onKeydown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') emit('close');
+};
+
+// Prevent background scrolling while the modal is open, and close on Escape
 onMounted(() => {
     document.body.style.overflow = 'hidden';
-    document.body.style.height = '100%';
+    window.addEventListener('keydown', onKeydown);
 });
 
 onUnmounted(() => {
     document.body.style.overflow = '';
-    document.body.style.height = '';
+    window.removeEventListener('keydown', onKeydown);
 });
 </script>
 
 <template>
-    <div class="modal-backdrop" @click="$emit('close')">
-        <div  class="modal" :class="{ 'has-background': !!props.bgImage }" :style="modalBackground" @click.stop>
-            <button class="close-button" @click="$emit('close')">
+    <div class="modal-backdrop" @click="emit('close')">
+        <div class="modal" role="dialog" aria-modal="true" :aria-label="project.title" :style="modalBackground" @click.stop>
+            <button class="close-button" aria-label="Close" @click="emit('close')">
                 <v-icon name="io-close" scale="3.0" />
             </button>
             <div class="modal-content">
-                <h1>{{ props.title }}</h1>
+                <h1>{{ project.title }}</h1>
                 <h2>About the Game</h2>
-                <p>{{ props.gameDescription }}</p>
+                <p>{{ project.gameDescription }}</p>
                 <h2>What I did</h2>
-                <p>{{ props.workDescription }}</p>
-                <slot/>
-                <ProjectInfoTable
-                    v-if="info"
-                    :info="info"
-                />
-                <button type="button" class="bottom-close-button" @click="$emit('close')">
+                <p>{{ project.workDescription }}</p>
+
+                <div v-for="(row, rowIndex) in project.media" :key="rowIndex" class="media-row">
+                    <div v-for="item in row" :key="item.src" class="media-item" :class="{ single: row.length === 1 }">
+                        <video v-if="item.type === 'video'" :src="item.src" :aria-label="item.alt"
+                            autoplay loop muted playsinline preload="metadata" />
+                        <img v-else :src="item.src" :alt="item.alt" loading="lazy" decoding="async" />
+                    </div>
+                </div>
+
+                <a v-for="link in project.links" :key="link.url" class="link-button" :href="link.url"
+                    target="_blank" rel="noopener noreferrer" :style="link.color ? { background: link.color } : undefined">
+                    <v-icon v-if="link.icon" :name="link.icon" scale="2.0" />
+                    <span>{{ link.label }}</span>
+                </a>
+
+                <!-- Extra project-specific content from a custom modal -->
+                <slot />
+
+                <ProjectInfoTable :info="project.info" />
+                <button type="button" class="bottom-close-button" @click="emit('close')">
                     <v-icon name="io-close" scale="1.2" />
                     Close
                 </button>
@@ -94,7 +105,7 @@ onUnmounted(() => {
 }
 
 /* Blurred background */
-.modal.has-background::before {
+.modal::before {
     content: "";
     position: absolute;
     inset: -20px;
@@ -108,7 +119,7 @@ onUnmounted(() => {
 }
 
 /* Dark overlay for readability */
-.modal.has-background::after {
+.modal::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -183,6 +194,67 @@ h2 {
     padding-top: 1rem;
     text-align: center;
     text-transform: uppercase;
+}
+
+.media-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    margin: 1rem auto;
+}
+
+.media-item {
+    max-width: 390px;
+    max-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 0.75rem;
+}
+
+.media-item.single {
+    max-width: 100%;
+    max-height: none;
+}
+
+.media-item img,
+.media-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@media (max-width: 650px) {
+    .media-row {
+        flex-direction: column;
+    }
+
+    .media-item {
+        width: min(100%, 300px);
+    }
+}
+
+.link-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    width: fit-content;
+    margin: 1rem auto;
+    padding: 0.5rem 1rem;
+    color: white;
+    background: #3e8cf3;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.link-button:hover {
+    filter: brightness(0.85);
+    transform: scale(1.08);
 }
 
 p {

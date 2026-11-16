@@ -16,12 +16,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deply:
+  deploy:
     runs-on: ubuntu-latest
 
     environment:
       name: github-pages
-      url: ${{ steps.deploymeny.output.pages_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout repository
